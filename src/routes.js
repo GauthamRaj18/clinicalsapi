@@ -1,14 +1,17 @@
-import patientController from './patient/patient.controller'
-import clinicalsController from './clinicals/clinicals.controller'
+import {
+  getAll, getByID, create, update, deleteOne,
+} from './patient/patient.controller';
+import { getAll as getAllClinical, create as createClinical } from './clinicals/clinicals.controller';
 
-module.exports=(router)=>{
-    router.get('/patients', patientController.getAll)
-    router.get('/patients/:id', patientController.getByID)
-    router.post('/patients', patientController.create)
-    router.put('/patients/:id', patientController.update)
-    router.delete('/patients/:id', patientController.delete)
+const routes = (router) => {
+  router.get('/patients', getAll);
+  router.get('/patients/:id', getByID);
+  router.post('/patients', create);
+  router.put('/patients/:id', update);
+  router.delete('/patients/:id', deleteOne);
 
-    router.get('/clinicals/:patientId', clinicalsController.getAll)
-    router.post('/clinicals', clinicalsController.create)
+  router.get('/clinicals/:patientId', getAllClinical);
+  router.post('/clinicals', createClinical);
+};
 
-}
+export default routes;

@@ -1,7 +1,6 @@
-import mongoose from 'mongoose'
-import {DB} from './properties.js'
+import { connect } from 'mongoose';
+import { DB } from './properties.cjs';
 
-
-module.exports= function(){
-    mongoose.connect(DB)
-}
+export default () => {
+  connect(DB);
+};

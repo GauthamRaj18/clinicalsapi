@@ -1,16 +1,14 @@
-import mongoose from 'mongoose'
+import { Schema } from 'mongoose';
 
+const PatientSchema = Schema({
+  firstName: String,
+  secondName: String,
+  age: Number,
+  clinicals: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Clinicals',
+  }],
 
-var PatientSchema = mongoose.Schema({
-    firstName: String,
-    secondName: String,
-    age: Number,
-    clinicals: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Clinicals'
-    }]
+});
 
-})
-
-
-module.exports = PatientSchema
+export default PatientSchema;

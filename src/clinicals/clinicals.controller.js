@@ -1,17 +1,21 @@
-import dao from './clinical.dao'
+import clinicalsModel from './clinical.dao';
 
-exports.getAll=(req,res)=>{
-    dao.get({patient:req.params.patientId}, 
-        (err, clinicalsData)=>{
-            if (err) console.log(err)
-            res.send(clinicalsData)
-    })
+export function getAll(req, res) {
+  clinicalsModel.get(
+    { patient: req.params.patientId },
+    (err, clinicalsData) => {
+      if (err) console.log(err);
+      res.send(clinicalsData);
+    },
+  );
 }
 
-exports.create=(req,res)=>{
-    var clinicals = req.body
-    dao.create(clinicals, (err, clinicals)=>{
-        if (err) console.log(err)
-        res.send(clinicals)
-    })
+export function create(req, res) {
+  const clinicals = req.body;
+  clinicalsModel.create(clinicals, (err, result) => {
+    if (err) console.log(err);
+    res.send(result);
+  });
 }
+
+// export { exports.cre, };

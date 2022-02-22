@@ -1,20 +1,20 @@
-import express, { Router } from 'express'
-import {PORT} from './config/properties.js'
-import db from './config/db'
-import { urlencoded, json } from "body-parser"
-import clinicalRoutes from './routes'
+import express, { Router } from 'express';
+import { urlencoded, json } from 'body-parser';
+import { PORT } from './config/properties.cjs';
+import db from './config/db';
+import clinicalRoutes from './routes';
 
-var app = express()
-db()
+const app = express();
+db();
 
-app.use(urlencoded({extended:true}))
-app.use(json())
+app.use(urlencoded({ extended: true }));
+app.use(json());
 
-var clinicalRouter = Router()
-clinicalRoutes(clinicalRouter)
-app.use('/clinicalsapi', clinicalRouter)
+const clinicalRouter = Router();
+clinicalRoutes(clinicalRouter);
+app.use('/clinicalsapi', clinicalRouter);
 
-app.listen(PORT, (err)=>{
-    if (err) console.log(err)
-    console.log("Application started on " + PORT)
-})
+app.listen(PORT, (err) => {
+  if (err) console.log(err);
+  console.log(`Application started on ${PORT}`);
+});

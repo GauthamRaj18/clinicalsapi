@@ -1,13 +1,12 @@
-import mongoose from 'mongoose'
+import { Schema } from 'mongoose';
 
+const ClinicalsSchema = Schema({
+  componentName: String,
+  componentValue: String,
+  patient: {
+    type: Schema.Types.ObjectId,
+    ref: 'Patient',
+  },
+});
 
-var ClinicalsSchema = mongoose.Schema({
-    componentName: String,
-    componentValue: String,
-    patient:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Patient'
-    }
-})
-
-module.exports = ClinicalsSchema
+export default ClinicalsSchema;

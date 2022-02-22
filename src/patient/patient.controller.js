@@ -1,41 +1,41 @@
-import dao from './patient.dao'
+import patientModel from './patient.dao';
 
-exports.getAll=(req,res)=>{
-    dao.get({}, (err, patients)=>{
-        if (err) console.log(err)
-        res.send(patients)
-    })
+export function getAll(req, res) {
+  patientModel.get({}, (err, patients) => {
+    if (err) console.log(err);
+    res.send(patients);
+  });
 }
 
-exports.getByID=(req,res)=>{
-    dao.get({_id:req.params.id}, (err, patient)=>{
-        if (err) console.log(err)
-        res.send(patient)
-    })
+export function getByID(req, res) {
+  patientModel.get({ _id: req.params.id }, (err, patient) => {
+    if (err) console.log(err);
+    res.send(patient);
+  });
 }
 
-exports.create=(req,res)=>{
-    var patient = req.body
-    dao.create(patient, (err, patient)=>{
-        if (err) console.log(err)
-        res.send(patient)
-    })
+export function create(req, res) {
+  const patient = req.body;
+  patientModel.create(patient, (err, patientRes) => {
+    if (err) console.log(err);
+    res.send(patientRes);
+  });
 }
 
-exports.update=(req,res)=>{
-    var patient = {
-        // "firstName": req.params.firstName,
-        // "secondName": req.params.secondName,
-        "age": req.body.age,
-    }
-    dao.updateOne({_id:req.params.id}, patient, (err, patient)=>{
-        if (err) console.log(err)
-        res.send("patient data updated")
-    })
+export function update(req, res) {
+  const patient = {
+    // "firstName": req.params.firstName,
+    // "secondName": req.params.secondName,
+    age: req.body.age,
+  };
+  patientModel.updateOne({ _id: req.params.id }, patient, (err, patientRes) => {
+    if (err) console.log(err);
+    res.send(`patient data updated${patientRes}`);
+  });
 }
-exports.delete=(req,res)=>{
-    dao.delete({_id:req.params.id}, (err, result)=>{
-        if (err) console.log(err)
-        res.send(result)
-    })
+export function deleteOne(req, res) {
+  patientModel.delete({ _id: req.params.id }, (err, result) => {
+    if (err) console.log(err);
+    res.send(result);
+  });
 }
